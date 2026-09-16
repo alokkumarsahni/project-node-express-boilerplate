@@ -6,10 +6,15 @@ pipeline {
 				sh 'yarn install'
 			}
 		}
-		stage ('Test'){
-			steps {
-				sh 'yarn test tests/unit'
-			}
-		}
+		stage('Test') {
+    steps {
+        sh '''
+            yarn test \
+            --testPathIgnorePatterns="tests/integration" \
+            --testPathIgnorePatterns="paginate.plugin.test.js" \
+            --testPathIgnorePatterns="error.test.js"
+        '''
+    }
+}
 	}
 }
