@@ -6,6 +6,7 @@ pipeline {
 				sh 'yarn install'
 			}
 		}
+<<<<<<< HEAD
 		stage ('SQ analysis'){
 			steps {
 				withSonarQubeEnv('SonarQube') {
@@ -30,5 +31,17 @@ pipeline {
 				sh 'yarn test'
 			}
 		}
+=======
+		stage('Test') {
+    steps {
+        sh '''
+            yarn test \
+            --testPathIgnorePatterns="tests/integration" \
+            --testPathIgnorePatterns="paginate.plugin.test.js" \
+            --testPathIgnorePatterns="error.test.js"
+        '''
+    }
+}
+>>>>>>> 8e0ce81b1a8aad81e983e7ac2e999d7ccfddb9b1
 	}
 }
